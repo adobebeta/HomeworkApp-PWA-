@@ -49,10 +49,10 @@
         let db = firebase.firestore()
         db.collection("Collection").get().then(function (querySnapshot) {
             querySnapshot.forEach(function (doc) {
+                var docIdCurrent = doc.id
     
-                console.log(doc.id, " => ", doc.data());
-                // document.getElementById("demo").innerHTML += '<br>  subject: ' + JSON.stringify(doc.data().subject) + '  des: '+JSON.stringify(doc.data().description) ;
-           
+                // console.log(doc.id, " => ", doc.data());
+              
            document.getElementById("testInnerDiv").innerHTML +=  `<div class="card">
                         <h5 class="card-header">`+
                             doc.data().subject +`
@@ -66,11 +66,20 @@
                             </p>
                         </div>
                     </div>`
-
-                    console.log( doc.data().subject)
+                    console.log( doc.id)
+                    // console.log( doc.data().subject)
             
             });
         });
+    }
+
+    function editBtn(){
+        alert("eiei")
+        console.log(docIdCurrent)
+        var value1 =  "value1"
+          var value2 = "value2";
+          var queryString = "?para1=" + value1 + "&para2=" + value2;
+        //   window.location.href = "page2.html" + queryString;
     }
     </script>
      <!-- ========firebase Read======== -->
