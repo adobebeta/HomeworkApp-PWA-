@@ -1,5 +1,6 @@
 <mobile>
     <link href="style.css" rel="stylesheet" type="text/css" />
+    <meta charset="UTF-8"> 
     <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous"> -->
 
 
@@ -33,7 +34,7 @@
             <label for="fname">วันกำหนดส่ง:</label><br>
             <input type="text" id="deadline" placeholder="23/02/63"><br><br>
 
-            <button id="addHomework"> เพิ่ม</button>
+            <button id="addHomework"> ยืนยัน</button>
        
 
         <!-- add data to Firebase Cloud -->
@@ -78,7 +79,18 @@ alert("บันทึกข้อมูลเรียบร้อย")
         <a href="index.html">
             <button> ย้อนกลับ</button>
         </a>
+
+        <br><br>
+
         
+          <button onclick="deleteHomework()" style="background: red;"> ลบการบ้าน</button>
+      
+        <script>
+          function deleteHomework(){
+            let db = firebase.firestore()
+            db.collection("Collection").doc("4:34:26 AM").delete() //ใส่เลข doc.id ที่ได้มา
+          }
+        </script>
   
   
       
