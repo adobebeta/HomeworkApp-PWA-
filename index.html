@@ -53,9 +53,14 @@
     
                 // console.log(doc.id, " => ", doc.data());
               
+                //   บรรทัดที่  62 อยากให้มันย้ายหน้า แล้วส่งค่า doc.id ไปด้วย
            document.getElementById("testInnerDiv").innerHTML +=  `<div class="card">
                         <h5 class="card-header">`+
                             doc.data().subject +`
+                            
+                            
+                            <input type="button" value="แก้ไข" onclick="window.location.href='page2.html'" /> 
+   
                         </h5>
                         <div class="card-body">
                             <p class="card-text">`+
