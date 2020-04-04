@@ -55,21 +55,20 @@
            
            document.getElementById("testInnerDiv").innerHTML +=  `<div class="card">
                         <h5 class="card-header">`+
-                            JSON.stringify(doc.data().subject) +`
+                            doc.data().subject +`
                         </h5>
                         <div class="card-body">
                             <p class="card-text">`+
-                                JSON.stringify(doc.data().description)+`
-                                <div class="deadline">`+
-                                    JSON.stringify(doc.data().deadline)+`
+                                doc.data().description+`
+                                <div class="deadline"> วันกำหนดส่ง : `+
+                                   doc.data().deadline+`
                                     </div>
                             </p>
                         </div>
-                    </div>
-                    `
+                    </div>`
 
-           
-           
+                    console.log( doc.data().subject)
+            
             });
         });
     }
@@ -78,44 +77,6 @@
 
 
 
-                    <div class="card">
-                        <h5 class="card-header">
-                            PWA
-                        </h5>
-                        <div class="card-body">
-                            <p class="card-text">
-                                ส่งงาน Mock Web
-                                <div class="deadline">27 มีนาคม 63</div>
-                            </p>
-                        </div>
-                    </div>
-
-
-
-
-                    <div class="card">
-                        <h5 class="card-header">
-                            English
-                        </h5>
-                        <div class="card-body">
-                            <p class="card-text">
-                                สอบ Conversation บท3
-                                <div class="deadline">30 มีนาคม 63</div>
-                            </p>
-                        </div>
-                    </div>
-
-                    <div class="card">
-                        <h5 class="card-header">
-                            Security
-                        </h5>
-                        <div class="card-body">
-                            <p class="card-text">
-                                Encoding/decoding
-                                <div class="deadline">31 มีนาคม 63</div>
-                            </p>
-                        </div>
-                    </div>
 
 
                 </div>
@@ -125,7 +86,7 @@
      <br>
         <a href="addHomework.html">
             
-            <button>เพิ่มการบ้าน</button>
+            <button>เพิ่มการบ้านใหม่</button>
         </a>
 
         <br><br>
