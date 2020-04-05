@@ -34,6 +34,13 @@
             <label for="fname">วันกำหนดส่ง:</label><br>
             <input type="text" id="deadline" placeholder="23/02/63"><br><br>
 
+
+            
+
+
+
+
+
             <button id="addHomework"> เพิ่ม</button>
        
 
@@ -54,9 +61,12 @@ function add(){
   var description = document.getElementById("description").value
   var deadline = document.getElementById("deadline").value
 
+
+  
+
   db.collection("Collection").doc(now).set({
   subject: subject,
-  description:  "test",
+  description:  description,
   deadline: deadline
 })
 

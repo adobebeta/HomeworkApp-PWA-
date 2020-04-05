@@ -1,5 +1,7 @@
 <mobile>
     <link href="style.css" rel="stylesheet" type="text/css" />
+
+
     <meta charset="UTF-8"> 
     <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous"> -->
 
@@ -34,10 +36,14 @@
             <label for="fname">วันกำหนดส่ง:</label><br>
             <input type="text" id="deadline" placeholder="23/02/63"><br><br>
 
+            <!-- calendar -->
+            
+            <!-- end car -->
+
             <button id="addHomework"> ยืนยัน</button>
        
 
-        <!-- add data to Firebase Cloud -->
+<!-- add data to Firebase Cloud -->
 <script>
 
 document.getElementById("addHomework").addEventListener("click",add)
@@ -54,9 +60,9 @@ function add(){
   var description = document.getElementById("description").value
   var deadline = document.getElementById("deadline").value
 
-  db.collection("Collection").doc(now).set({
+  db.collection("Collection").doc("5:07:29 AM").set({  
   subject: subject,
-  description:  "test",
+  description:  description,
   deadline: deadline
 })
 
