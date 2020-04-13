@@ -52,6 +52,7 @@
         db.collection("Collection").get().then(function (querySnapshot) {
             querySnapshot.forEach(function (doc) {
                 var docIdCurrent = doc.id
+                console.log("doc id= "+doc.id)
     
                 // console.log(doc.id, " => ", doc.data());
               
@@ -61,8 +62,12 @@
                             doc.data().subject +`
                             
                             
-                            <input type="button" value="(แก้ไข)" onclick="window.location.href='editHomework.html'" /> 
-   
+                            <form action="editHomework.html">
+                            <input type="hidden" name="id" value="`+doc.id+`" />
+                            <input type="submit" id="editBtn" value="แก้ไข" />
+                            </form>
+
+
                         </h5>
                         <div class="card-body">
                             <p class="card-text">`+
@@ -90,9 +95,6 @@
     }
     </script>
      <!-- ========firebase Read======== -->
-
-
-
 
 
                 </div>

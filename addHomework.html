@@ -34,13 +34,6 @@
             <label for="fname">วันกำหนดส่ง:</label><br>
             <input type="text" id="deadline" placeholder="23/02/63"><br><br>
 
-
-            
-
-
-
-
-
             <button id="addHomework"> เพิ่ม</button>
        
 
@@ -53,18 +46,13 @@ function add(){
 
   let db = firebase.firestore()
 
-  var now = new Date().toLocaleTimeString();
-
   console.log(document.getElementById("subject").value)
 
   var subject = document.getElementById("subject").value
   var description = document.getElementById("description").value
   var deadline = document.getElementById("deadline").value
 
-
-  
-
-  db.collection("Collection").doc(now).set({
+  db.collection("Collection").add({
   subject: subject,
   description:  description,
   deadline: deadline

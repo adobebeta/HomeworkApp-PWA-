@@ -17,50 +17,100 @@
 <!-- Firebase Connection -->
 <script src="./firebase.js"></script>
 
-    <div class="mobile-status-bar">
-      <img src="https://i.imgur.com/XSqz2K4.png" alt="" />
-    </div>
-  
-    <div class="mobile-container">
-      <nav>Edit Homework</nav>
-      <div class="page" id="page-setting">
-        <h2>แก้ไขการบ้าน</h2>
-        <!-- <textarea placeholder="Insert name" rows="10"></textarea> -->
-  
-            <label for="fname">วิชา:</label><br>
-            <input type="text" id="subject" placeholder="ภาษาอังกฤษ"><br><br>
 
-            <label for="fname">รายละเอียด:</label><br>
-            <input type="text" id="description" placeholder="ท่องคำศัพท์ 50 คำ"><br><br>
 
-            <label for="fname">วันกำหนดส่ง:</label><br>
-            <input type="text" id="deadline" placeholder="23/02/63"><br><br>
+<div class="mobile-status-bar">
+  <img src="https://i.imgur.com/XSqz2K4.png" alt="" />
+</div>
 
-            <!-- calendar -->
-            
-            <!-- end car -->
+<div class="mobile-container">
+  <nav>Edit Homework</nav>
+  <div class="page" id="page-setting">
+    <div id="menu">
+    <h2>แก้ไขการบ้าน</h2>
+    <!-- <textarea placeholder="Insert name" rows="10"></textarea> -->
 
-            <button id="addHomework"> ยืนยัน</button>
-       
+        <label for="fname">วิชา:</label><br>
+        <input type="text" id="subject" ><br><br>
 
-<!-- add data to Firebase Cloud -->
+        <label for="fname">รายละเอียด:</label><br>
+        <input type="text" id="description" ><br><br>
+
+        <label for="fname">วันกำหนดส่ง:</label><br>
+        <input type="text" id="deadline" ><br><br>
+
+        <!-- <button id="addHomework"> ยืนยัน</button> -->
+      </div>
+
 <script>
+//get id element from firebase
+const queryString = window.location.search;
+console.log("fromURL:"+queryString);
+var index = queryString.search("=");
+console.log("index of real:"+index);
+var id = queryString.substr(index+1);
+console.log(id)
 
+    // console.log(doc.data().subject)
+    //doc.data().description
+
+edit()
+function edit(){
+//read data
+let db = firebase.firestore()
+db.collection("Collection").doc(id).get().then(function(docs){
+        console.log(docs.data())
+        console.log(docs.data().subject)
+
+        let subject = docs.data().subject
+        let description = docs.data().description
+        let deadline = docs.data().deadline
+        console.log(typeof subject)
+
+
+  document.getElementById("menu").innerHTML =  `<h2>แก้ไขการบ้าน</h2>
+
+        <label for="fname">วิชา:</label><br>
+        <input type="text" id="subject" value=`+subject+`><br><br>
+
+        <label for="fname">รายละเอียด:</label><br>
+        <input type="text" id="description" value=`+description+`><br><br>
+
+        <label for="fname">วันกำหนดส่ง:</label><br>
+        <input type="text" id="deadline" value=`+deadline+`><br><br>
+
+      `
+
+})
+}
+
+</script>
+    
+
+
+        <button id="addHomework"> ยืนยัน</button>
+        <br><br>
+        <a href="index.html">
+            <button> ย้อนกลับ</button>
+        </a>
+
+        <br><br>
+
+        <button onclick="deleteHomework()" style="background: red;"> ลบการบ้าน</button>
+      
+<script>
+// update data to Firebase Cloud 
 document.getElementById("addHomework").addEventListener("click",add)
 
 function add(){
-
   let db = firebase.firestore()
-
-  var now = new Date().toLocaleTimeString();
-
   console.log(document.getElementById("subject").value)
 
   var subject = document.getElementById("subject").value
   var description = document.getElementById("description").value
   var deadline = document.getElementById("deadline").value
 
-  db.collection("Collection").doc("5:07:29 AM").set({  
+  db.collection("Collection").doc(id).set({  
   subject: subject,
   description:  description,
   deadline: deadline
@@ -78,30 +128,25 @@ alert("บันทึกข้อมูลเรียบร้อย")
 }
 
 
-</script>
-
-
-        <br><br>
-        <a href="index.html">
-            <button> ย้อนกลับ</button>
-        </a>
-
-        <br><br>
-
-        
-          <button onclick="deleteHomework()" style="background: red;"> ลบการบ้าน</button>
-      
-        <script>
-          function deleteHomework(){
-            let db = firebase.firestore()
-            db.collection("Collection").doc("4:34:26 AM").delete() //ใส่เลข doc.id ที่ได้มา
-          }
-        </script>
+function deleteHomework(){
+  let db = firebase.firestore()
+  db.collection("Collection").doc(id).delete() //ใส่เลข doc.id ที่ได้มา
+  alert("ลบข้อมูลเรียบร้อย")
+  .then(function() {
+    
+    console.log("Document successfully deleted");
+})
+.catch(function(error) {
+    console.error("Error delete document: ", error);
+});
   
+
+          }
+
+        </script>
   
       
       </div>
       </div>
     </div>
-  </mobile>
-  
+</mobile>
